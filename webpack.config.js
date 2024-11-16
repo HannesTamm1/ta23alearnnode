@@ -1,12 +1,12 @@
-import path from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-
-
+import path from "path";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import loader from "sass-loader";
+ 
 export default {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    filename: 'main.js',
-    path: path.resolve(import.meta.dirname, 'dist'),
+    filename: "main.js",
+    path: path.resolve(import.meta.dirname, "dist"),
   },
   devServer: {
     static: {
@@ -19,32 +19,28 @@ export default {
     rules: [
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.scss$/i,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.scss$/i,
         use: [
-           'style-loader',
-           'css-loader', 
-           {
-           loader: 'sass-loader',
-           options: {
-            sassOptions: {
-              quietDeps: True
+          "style-loader", 
+          "css-loader", 
+          {
+            loader: "sass-loader",
+            options: {
+              sassOptions: {
+                quietDeps: true
+              }
             }
-           }
-            }
-          ],
+          }
+        ],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
-    }),
-  ],
+        template: './src/index.html'
+    })
+    ],
 };
