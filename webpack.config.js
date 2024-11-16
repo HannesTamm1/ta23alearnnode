@@ -19,13 +19,32 @@ export default {
     rules: [
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.scss$/i,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.scss$/i,
+        use: [
+           'style-loader',
+           'css-loader', 
+           {
+           loader: 'sass-loader',
+           options: {
+            sassOptions: {
+              quietDeps: True
+            }
+           }
+            }
+          ],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-        template: './src/index.html'
-    })
+      template: './src/index.html',
+    }),
   ],
 };
