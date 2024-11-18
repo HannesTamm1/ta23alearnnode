@@ -1,16 +1,18 @@
-import path from "path";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import loader from "sass-loader";
- 
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import loader from 'sass-loader';
+
 export default {
-  entry: "./src/index.js",
+  entry: './src/index.js',
   output: {
-    filename: "main.js",
-    path: path.resolve(import.meta.dirname, "dist"),
+    filename: 'main.js',
+    // Fixing `import.meta.dirname` issue
+    path: path.resolve(new URL(import.meta.url).pathname, 'dist'),
   },
   devServer: {
     static: {
-      directory: path.join(import.meta.dirname, 'public'),
+      // Fixing `import.meta.dirname` issue here as well
+      directory: path.join(path.resolve(new URL(import.meta.url).pathname), 'public'),
     },
     compress: true,
     port: 9000,
@@ -19,28 +21,43 @@ export default {
     rules: [
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.scss$/i,
         use: [
-          "style-loader", 
-          "css-loader", 
+          'style-loader',
+          'css-loader',
           {
-            loader: "sass-loader",
+            loader: 'sass-loader',
             options: {
               sassOptions: {
-                quietDeps: true
-              }
-            }
-          }
+                quietDeps: true, // Optional, can be omitted if not needed
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.njk$/,
+        use: [
+          {
+            loader: 'simple-nunjucks-loader',
+            options: {
+              // Nunjucks loader options can be configured here
+            },
+          },
         ],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-        template: './src/index.html'
-    })
-    ],
+      template: './src/index.njk',
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'about.html',
+      template: './src/about.njk',
+    }),
+  ],
 };
