@@ -1,2 +1,2 @@
 import './style.scss';
-console.log("Privet!");
+console.log("Hello Webpack!");
