@@ -1,8 +1,13 @@
 <script setup>
 import Tabs from './components/Tabs.vue';
+
+import Modals from './pages/Modals.vue';
+import ToDO from './pages/ToDo.vue';
+
 import { ref } from 'vue';
-let titles = ['item1', 'item2', 'item3', 'item4'];
-let contents = ['content 1', 'content 2', 'content 3', 'content 4'];
+
+let titles = ['ToDo', 'Modals'];
+let contents = [ToDO, Modals];
 let activeTab = ref(0);
 function change(key){
     console.log(key);
@@ -12,9 +17,7 @@ function change(key){
 
 <template>
     <Tabs :items="titles" @change = "change"></Tabs>
-    <div class="container">
-        <h1>{{ contents[activeTab] }}</h1>
-    </div>
+    <component :is="contents[activeTab]"></component>
 </template>
 
 <style></style>
