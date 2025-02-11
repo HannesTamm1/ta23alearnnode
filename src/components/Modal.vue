@@ -1,7 +1,7 @@
 <script setup>
     defineProps(['active']);
 
-    const emit = defineEmits(['close']);
+    const emit = defineEmits(['close']); 
 
     document.body.addEventListener('keydown', event => {
         console.log(event);
