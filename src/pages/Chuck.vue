@@ -1,13 +1,15 @@
 <script setup>
 import { ref } from 'vue';
-
+import axios from 'axios';
 
 let joke = ref('');
 
-let response = await fetch('https://api.chucknorris.io/jokes/random');
-let data = await response.json();
-console.log(data);
-joke.value = data.value;
+try {
+let response = await axios.get('https://api.chucknorris.io/jokes/random');
+joke.value = response.data.value;
+} catch (err) {
+    console.log(err);
+}
 </script>
 
 <template>
