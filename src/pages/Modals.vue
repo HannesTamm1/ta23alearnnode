@@ -18,15 +18,11 @@ document.body.addEventListener('keydown', event => {
 </script>
 
 <template>
-    <div class="container">
-        <section class="section">
             <div class="buttons">
                 <button class="button is-primary" @click="modalActive=true"> Modal Active </button>
                 <button class="button is-warning is-outlined" @click="modalActive2=true"> Modal 2 Active </button>
                 <button class="button is-danger is-rounded" @click="modalActive3=true"> Modal 3 Active </button>
             </div>
-        </section>
-    </div>
 
         <ImgModal :active="modalActive" @close="modalActive=false" url="https://picsum.photos/seed/hannes/200/300"></ImgModal>
         <ImgModal :active="modalActive2" @close="modalActive2=false" url="https://picsum.photos/seed/kaka/200/300"></ImgModal>
