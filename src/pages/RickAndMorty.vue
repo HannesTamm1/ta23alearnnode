@@ -61,15 +61,13 @@ async function search() {
 
 onMounted(() => {
     document.addEventListener('scroll', () => {
-        if(window.scrollY + window.innerHeight === document.body.clientHeight) {
+        if(window.scrollY + window.innerHeight === document.body.clientHeight - 300) {
             next();
         }
-
     })
 });
+
 </script>
-
-
 <template>
     <div class="field has-addons">
         <div class="control is-expanded">
