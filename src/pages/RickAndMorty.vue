@@ -55,6 +55,7 @@ async function search() {
     searchTimeout = setTimeout(async () => {
         error.value = '';
         currentPage.value = 1;
+        characters.value = [];
         await getCharacters();
     },300);
 }
@@ -79,7 +80,6 @@ onMounted(() => {
             </button>
         </div>
     </div>
-    <Pagination v-if="info" :info="info" :current="currentPage" @next="next" @prev="prev" @page="page"></Pagination>
     <div class="columns is-multiline">
         <div v-for="character in characters" class="column is-one-quarter">
             <CharacterCard :character="character"></CharacterCard>
