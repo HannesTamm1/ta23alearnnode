@@ -1,11 +1,13 @@
 <script setup>
 
-function vibrate(){
-    navigator.vibrate(200);
+function vibrate() {
+    if (navigator.vibrate) {
+        navigator.vibrate(200);
+    }
 }
 
 function starwars() {
-    navigator.vibrate([500,110,500,110,450,110,200,110,170,40,450,110,200,110,170,40,500]);
+    navigator.vibrate([500, 110, 500, 110, 450, 110, 200, 110, 170, 40, 450, 110, 200, 110, 170, 40, 500]);
 }
 
 function location() {
