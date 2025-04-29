@@ -51,11 +51,9 @@ app.get('/sse', async (req, res) => {
         }
         res.write(`event: newmessage\n`);
         res.write(`data: ${JSON.stringify(filteredMessages)}\n\n`);
-
     } while(!closed);
     res.end();
 });
-
 
 app.post('/', (req, res) => {
     messages.push({message: req.body.message, date: new Date()});
