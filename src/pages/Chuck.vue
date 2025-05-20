@@ -1,7 +1,4 @@
 <script setup>
-<<<<<<< HEAD
-</script>
-=======
 import { ref } from 'vue';
 import axios from 'axios';
 
@@ -18,4 +15,3 @@ joke.value = response.data.value;
 <template>
     {{ joke }}
 </template>
->>>>>>> 413c7a5eb200d968ecad14011e5aff154db3d0c4
